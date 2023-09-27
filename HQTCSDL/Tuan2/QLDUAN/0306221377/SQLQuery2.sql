@@ -1,0 +1,63 @@
+CREATE TABLE THANHNHAN
+(
+	MA_NVIEN char(9) not null,
+	TENTN nvarchar(15) not null,
+	PHAI nvarchar(3),
+	NGSINH datetime,
+	QUANHE nvarchar(15)
+)
+CREATE TABLE DEAN
+(
+	TENDA nvarchar(15),
+	MADA int not null,
+	DDIEM_DA nvarchar(15),
+	PHONG int
+)
+CREATE TABLE DIADIEM_PHG
+(
+	MAPHG int not null,
+	DIADIEM nvarchar(15) not null,
+	primary key(MAPHG, DIADIEM)
+)
+CREATE TABLE CONGVIEC
+(
+	MADA int not null,
+	STT int not null,
+	TEN_CONG_VIEC nvarchar(50),
+	primary key(MADA, STT)
+)
+CREATE TABLE PHANCONG
+(
+	MA_NVIEN char(9) not null,
+	MADA int not null,
+	STT int not null,
+	THOIGIAN float,
+	primary key(MA_NVIEN, MADA, STT)
+)
+
+ALTER TABLE NHANVIEN
+ADD NGAYVAOLAM DATETIME
+
+ALTER TABLE THANHNHAN
+ADD HOTN NVARCHAR(25)
+
+ALTER TABLE NHANVIEN
+ALTER COLUMN TENNV NVARCHAR(50)
+
+ALTER TABLE THANHHAN
+ALTER COLUMN HOTN NVARCHAR(50)
+
+EXEC SP_RENAME 'NHANVIEN.MANV', 'manhanvien'
+EXEC SP_RENAME 'THANNHAN.HOTN', 'HoThanNhan'
+EXEC SP_RENAME 'NHANVIEN', 'nv'
+EXEC SP_RENAME 'DIADIEM_PHG', 'DiaDiemPhong'
+
+ALTER TABLE nv
+DROP COLUMN DCHI
+
+ALTER TABLE nv
+DROP COLUMN manhanvien
+
+DROP TABLE PHANCONG
+
+DROP TABLE nv
