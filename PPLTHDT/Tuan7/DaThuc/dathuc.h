@@ -1,3 +1,4 @@
+#pragma once
 #define MAX 100
 class dathuc
 {
