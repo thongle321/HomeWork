@@ -1,0 +1,3 @@
+﻿  0306221369.cpp
+D:\0306221369\tuan_7\bai_1\0306221369.cpp(29,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  bai_1.vcxproj -> D:\0306221369\tuan_7\Debug\bai_1.exe

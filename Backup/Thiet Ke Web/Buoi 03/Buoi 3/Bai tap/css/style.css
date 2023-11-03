@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	margin: 20px	
+}
+
+.container {
+	min-width: 900px;
+}
+
+.wrapper {
+	position: relative;
+	overflow: auto;
+}
+
+header, aside, footer, .menuitem {
+	border-radius: 4px;
+	margin: 4px;
+}
+
+header {
+	padding: 15px	
+}
+
+nav {
+	float: left	
+}
+
+section {
+	padding: 10px;
+	margin: 0 210px;	
+}
+
+aside {
+	padding: 10px;
+	width: 180px;
+	bottom: 0;
+	top: 0;
+	right: 0;
+	position: absolute;
+}
+
+footer {
+	padding: 10px;	
+}
+
+header h1, header p, #menulist {
+	margin: 0;
+	padding: 0;
+}
+
+.menuitem {
+	padding: 2px;
+	cursor: pointer;	
+}
+
+th, td {
+	padding: 10px;	
+}
+
+/*
+========== Viết CSS ở dưới đường kẻ này ==========
+*/
+body {
+	font-family: Calibri;
+	font-size: 100%;
+	line-height: 26px;
+}
+header{
+	background-color:#84c754;
+	color: white;
+	text-align: center;
+	text-transform: capitalize;
+}
+nav {
+	width: 200px;
+	font-weight: bold;
+}
+section{
+	text-align: justify;
+}
+aside {
+	background-color: #32a4e7;
+	width: 180px;
+	color: white;
+	text-align: justify;
+}
+footer{
+	border: 1px solid #d4d4d4;
+	background-color: #f1f1f1;
+	text-align: center;
+	line-height: 14px;
+	font-size: 70%;
+}
+.menuitem {
+	border: 1px solid #d4d4d4;
+	background-color: #f1f1f1;
+	list-style-type: none;
+}
+a{
+	color: black;
+	text-decoration: none;
+}
+.menuitem:hover{
+	background-color:white;
+}
+table, tr, th, td{
+	border: 1px solid black;
+}

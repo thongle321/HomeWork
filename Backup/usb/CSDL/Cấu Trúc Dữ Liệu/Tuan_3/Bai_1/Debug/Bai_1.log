@@ -1,0 +1,3 @@
+﻿  0306221369_1.cpp
+D:\0306221369\Tuan_3\Bai_1\0306221369_1.cpp(22,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Bai_1.vcxproj -> D:\0306221369\Tuan_3\Debug\Bai_1.exe
