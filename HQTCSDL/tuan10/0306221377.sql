@@ -39,20 +39,23 @@ ELSE
 	PRINT N'Không đủ Đủ số lượng bán' + cast (@masp as varchar(100))
 SELECT * FROM SanPham Where MaSp = 2
 --4 
-alter table SanPham
-add trangthai bit
+ALTER TABLE SanPham
+ADD TrangThai bit
 
-update SanPham
-set trangthai = 1
+UPDATE SanPham
+SET TrangThai = 1
 
-DECLARE @sanpham6thang datetime
-SET @sanpham6thang = (SELECT COUNT(*) FROM HoaDon WHERE (DATEADD(MONTH,-6,GETDATE())) >= NgayLapHD)
+DECLARE @SanPham6Thang INT
+SET @SanPham6Thang = (SELECT COUNT(*) FROM HoaDon WHERE NgayLapHD <= DATEADD(MONTH, -6, GETDATE()))
 
-IF (@sanpham6thang > 0)
-	BEGIN
-		
-	END
-else
+IF (@SanPham6Thang > 0)
+BEGIN
+    UPDATE SanPham
+    SET TrangThai = 0
+    WHERE MaSp IN (SELECT MaSp FROM CT_HoaDon WHERE MaHD IN (SELECT MaHD FROM HoaDon WHERE NgayLapHD <= DATEADD(MONTH, -6, GETDATE())))
+END
+ELSE
+    PRINT 'Không có sản phẩm nào không bán được trong vòng 6 tháng'
 
 --5 
 DECLARE @soluong INT;
@@ -174,15 +177,29 @@ BEGIN
 END
 print N'Lương trưởng phòng 4 sau tăng: '  + cast(@luongtruongphong4 as nvarchar(10))
 --12
-DECLARE @ThanhTien MONEY = 300, @MAHD int = 10250, @ThanhTien10250 money
-SELECT @ThanhTien10250 = SoLuong*DonGia * (1-ChietKhau)
-						 FROM CT_HoaDon
-						 WHERE MaHD = @MAHD
-WHILE (@ThanhTien10250 >= 300)
+
+DECLARE @ThanhTien1 MONEY,  @MAHD1 int = 10250, @MASPXET2 INT, @TIEN1 FLOAT = 300
+-- LẤY THÔNG TIN CHI TIẾT CÓ THÀNH TIỀN THẤP NHẤT
+SELECT TOP 1 @MASPXET2 = MaSp, @ThanhTien1 = SoLuong * DonGia * (1 - ChietKhau)
+FROM CT_HoaDon 
+WHERE MaHD = @MAHD1
+ORDER BY SoLuong * DonGia * (1 - ChietKhau) ASC
+
+SELECT * FROM CT_HoaDon WHERE MaHD = @MAHD1 AND MaSp = @MASPXET2
+
+WHILE @ThanhTien1 >= @TIEN1
 BEGIN
-    SELECT TOP 1 @ThanhTien10250
-    DELETE FROM CT_HoaDon WHERE MaHD = @MAHD AND (SoLuong * DonGia) = @ThanhTien
+	DELETE FROM CT_HoaDon
+	WHERE MaHD = @MAHD1 AND MaSp = @MASPXET2
+
+	SELECT @ThanhTien1 = SoLuong * DonGia * (1 - ChietKhau)
+	FROM CT_HoaDon
+	WHERE MaHD = @MAHD1 AND MaSp = @MASPXET2
+	ORDER BY SoLuong * DonGia * (1 - ChietKhau) ASC
 END
+
+SELECT * FROM CT_HoaDon WHERE MaHD = @MAHD1 AND MaSp = @MASPXET2
+
 --13
 DECLARE @ThanhTien2 MONEY,  @MAHD2 int = 10251, @MASPXET INT,@TIEN FLOAT = 300
 -- LẤY THÔNG TIN CHI TIẾT CÓ THÀNH TIỀN CAO NHẤT
