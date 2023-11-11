@@ -1,0 +1,21 @@
+Định nghĩa các lớp sau:
+- Lớp hình (trừu tượng): 
+có các phương thức tính chu vi, tính diện tích (phương thức thuần ảo)
+- Lớp hình chữ nhật (kế thừa từ hình):
+ có phương thức khởi tạo có tham số là 2 cạnh, 
+ cài đặt các phương thức kế thừa từ hình
+- Lớp hình vuông (kế thừa từ hình chữ nhật): 
+có phương thức khởi tạo có tham số là 1 cạnh 
+(tái sử dụng tối đa các phương thức từ hình chữ nhật)
+- Lớp hình tam (kế thừa từ hình): 
+có phương thức khởi tạo có tham số là 3 cạnh, 
+cài đặt các phương thức kế thừa từ hình
+- Lớp hình tam giác đều (kế thừa từ hình tam giác): 
+có phương thức khởi tạo có tham số là 1 cạnh 
+(tái sử dụng tối đa các phương thức từ hình tam giác)
+- Lớp hình tam giác vuông (kế thừa từ hình tam giác): 
+có phương thức khởi tạo có tham số là 2 cạnh góc vuông 
+(tái sử dụng tối đa các phương thức từ hình tam giác)
+-Lớp hình tròn (kế thừa từ hình): 
+có phương thức khởi tạo có tham số là bán kính, 
+cài đặt các phương thức kế thừa từ hình
