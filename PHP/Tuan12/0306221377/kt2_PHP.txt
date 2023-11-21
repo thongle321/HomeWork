@@ -1,0 +1,32 @@
+Cho CSDL qlsv, co bảng sinh_vien với cấu trúc như sau:
+
+CREATE TABLE `qlsv`.`sinh_vien` (
+	`id` INT NOT NULL AUTO_INCREMENT ,
+	`mssv` VARCHAR(10) NOT NULL ,
+	`hoten` VARCHAR(255) NOT NULL ,
+	`diem` DOUBLE NOT NULL ,
+	PRIMARY KEY (`id`),
+	UNIQUE (`mssv`)
+)
+
+Viết các trang web thực hiện các chức năng sau:
+a. index.php: Hiện danh sách sinh viên (2đ)
+b. add.php: Thêm sinh viên mới (không thêm cột id)
+	Load trang: hiện form trống cho người dùng nhập thông tin sinh viên (1đ)
+	Sau khi người dùng submit form: hiện thông báo kết quả thêm thành công hay thất bại(1đ)
+c. edit.php: Cập nhật thông tin sinh viên (không cập nhật cột id)
+	Load trang: nếu có id hợp lệ trong query string thì hiện form với thông tin của sinh viên cho người dùng cập nhập, nếu không có id hoặc không tìm thấy id thì báo lỗi (1đ)
+	Sau khi người dùng submit form: hiện thông báo kết quả cập nhật thành công hay thất bại (1đ)
+d. delete: Xóa sinh viên
+	Load trang: nếu có id hợp lệ trong query string thì hiện thông tin sinh viên kèm theo thông báo "Bạn có chắc muốn xóa sinh viên này?" và nút "Đồng ý", nếu không có id hoặc không tìm thấy id thì báo lỗi(1đ)
+	Sau khi người dùng nhấn "Đồng ý": thông báo kết quả xóa thành công hay thất bại (1đ)
+
+Kiểm tra dữ liệu ở server (1đ)
+Kiểm tra dữ liệu ở client (các ô nhập liệu trong form sử dụng loại input và các thuộc tính ràng buộc phù hợp)(1đ)
+Các ràng buộc dữ liệu:
+MSSV: chuỗi 10 ký tự số
+Họ tên: chuỗi ngắn hơn 255 ký tự
+Điểm: số thực từ 0 tới 10
+
+Nộp bài:
+Nén các file php lại thành MSSV.rar

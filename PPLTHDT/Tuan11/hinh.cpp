@@ -1,34 +1,47 @@
 #include "hinh.h"
 #include <cmath>
 #include <iostream>
-const float PI = 3.14;
+#define PI 3.14
 using namespace std;
 // hinh
-hinh::hinh()
+Hinh::Hinh()
 {
 }
-hinh::~hinh()
+Hinh::~Hinh()
 {
 }
-// HinhCN
-HinhCN::HinhCN() : ChieuDai(0), ChieuRong(0) {}
-HinhCN::HinhCN(float ChieuDai, float ChieuRong)
+// ChuNhat
+ChuNhat::ChuNhat()
+{
+    this->ChieuDai = 0;
+    this->ChieuRong = 0;
+}
+ChuNhat::ChuNhat(float ChieuDai, float ChieuRong)
 {
     this->ChieuDai = ChieuDai;
     this->ChieuRong = ChieuRong;
 }
-float HinhCN::ChuVi()
+float ChuNhat::ChuVi()
 {
     return (ChieuDai + ChieuRong) * 2;
 }
-float HinhCN::DienTich()
+float ChuNhat::DienTich()
 {
     return ChieuDai * ChieuRong;
 }
 // Hinh Vuong
-HinhVuong::HinhVuong(float a) : HinhCN(a, a) {}
+HinhVuong::HinhVuong(float a)
+{
+    this->ChieuDai = a;
+    this->ChieuRong = a;
+}
 // Hinh Tam Giac
-TamGiac::TamGiac() : a(0), b(0), c(0) {}
+TamGiac::TamGiac()
+{
+    this->a = 0;
+    this->b = 0;
+    this->c = 0;
+}
 TamGiac::TamGiac(float a, float b, float c)
 {
     this->a = a;
@@ -45,9 +58,20 @@ float TamGiac::DienTich()
     return sqrt(p * (p - a) * (p - b) * (p - c));
 }
 // Tam Giac Deu
-TamGiacDeu::TamGiacDeu(float a) : TamGiac(a, a, a) {}
+TamGiacDeu::TamGiacDeu(float a)
+{
+    this->a = a;
+    this->b = a;
+    this->c = a;
+}
 // Tam Giac Vuong
-TamGiacVuong::TamGiacVuong(float a, float b, float c) : TamGiac(a, b, sqrt(a * a + b * b)) {}
+TamGiacVuong::TamGiacVuong(float a, float b)
+{
+    this->a = a;
+    this->b = b;
+    this->c = sqrt(a * a + b * b);
+}
+
 // Hinh Tron
 Tron::Tron()
 {

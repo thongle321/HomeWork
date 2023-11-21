@@ -4,7 +4,7 @@ using namespace std;
 int main()
 {
     int chon = 0;
-    hinh *h = NULL;
+    Hinh *h = NULL;
     do
     {
         cout << "1. Hinh Chu Nhat" << endl;
@@ -25,7 +25,7 @@ int main()
             cin >> chieudai;
             cout << "Nhap chieu rong: ";
             cin >> chieurong;
-            h = new HinhCN(chieudai, chieurong);
+            h = new ChuNhat(chieudai, chieurong);
             break;
         }
         case 2:
@@ -63,9 +63,7 @@ int main()
             cin >> a;
             cout << "Nhap canh b: ";
             cin >> b;
-            cout << "Nhap canh c: ";
-            cin >> c;
-            h = new TamGiacVuong(a, b, c);
+            h = new TamGiacVuong(a, b);
             break;
         }
         case 6:

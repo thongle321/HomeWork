@@ -1,35 +1,35 @@
 #pragma once
 #include <iostream>
 using namespace std;
-class hinh
+class Hinh
 {
 public:
-    hinh();
-    virtual ~hinh() = 0;
+    Hinh();
+    virtual ~Hinh() = 0;
     virtual float ChuVi() = 0;
     virtual float DienTich() = 0;
 };
 
-class HinhCN : public hinh
+class ChuNhat : public Hinh
 {
 protected:
     float ChieuDai;
     float ChieuRong;
 
 public:
-    HinhCN();
-    HinhCN(float ChieuDai, float ChieuRong);
+    ChuNhat();
+    ChuNhat(float ChieuDai, float ChieuRong);
     virtual float ChuVi();
     virtual float DienTich();
 };
 
-class HinhVuong : public HinhCN
+class HinhVuong : public ChuNhat
 {
 public:
     HinhVuong(float a = 0);
 };
 
-class TamGiac : public hinh
+class TamGiac : public Hinh
 {
 protected:
     float a, b, c;
@@ -50,10 +50,10 @@ public:
 class TamGiacVuong : public TamGiac
 {
 public:
-    TamGiacVuong(float a = 0, float b = 0, float c = 0);
+    TamGiacVuong(float a = 0, float b = 0);
 };
 
-class Tron : public hinh
+class Tron : public Hinh
 {
 protected:
     float r;
