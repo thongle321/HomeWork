@@ -38,18 +38,17 @@ $conn = null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="form">
+    <div class="register">
+        <h1>Đăng nhập</h1>
         <form action="" method="post">
             <label for="username">Username</label>
-            <input type="text" name="username" required> <br>
-            <br>
+            <input type="text" name="username" required>
             <label for="password">Password</label>
             <input type="password" name="password" required>
-            <br>
             <input type="submit" value="Đăng ký">
         </form>
     </div>

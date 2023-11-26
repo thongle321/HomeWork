@@ -1,0 +1,20 @@
+.register {
+    height: 240px;
+    width: 180px;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    padding-left: 20px;
+    margin: auto;
+    position: relative;
+    top: 100px;
+}
+
+label {
+    color: cadetblue;
+
+}
+
+input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
