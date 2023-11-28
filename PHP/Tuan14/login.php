@@ -2,29 +2,29 @@
 require_once("DB.php");
 session_start();
 
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['usernane'])) {
     header("Location: index.php");
     exit;
 }
-$errorMessage = "";
+$error = "";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $username = trim($_POST['username'] ?? '');
+    $usernane = trim($_POST['usernane'] ?? '');
     $password = trim($_POST['password'] ?? '');
-    $sql = "SELECT * FROM tai_khoan WHERE username = :username AND password = :password";
+    $sql = "SELECT * FROM tai_khoan WHERE usernane = :usernane AND password = :password";
     $stmt = $conn->prepare($sql);
-    $stmt->bindValue(":username", $username);
+    $stmt->bindValue(":usernane", $usernane);
     $stmt->bindValue(":password", $password);
     $stmt->execute();
-    $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch();
     if ($user > 0) {
-        $_SESSION['username'] = $username;
+        $_SESSION['usernane'] = $usernane;
         if (isset($_POST['remember'])) {
-            setcookie("username", $username, time() + 3600 * 24 * 7);
+            setcookie("usernane", $usernane, time() + 3600 * 24 * 7);
         }
         header("Location: index.php");
         exit;
     } else {
-        $errorMessage = "Sai tài khoản hoặc mật khẩu";
+        $error = "Sai tài khoản hoặc mật khẩu";
     }
 }
 $conn = null;
@@ -40,19 +40,22 @@ $conn = null;
 </head>
 
 <body>
+    <h1>Đăng nhập</h1>
     <form action="" method="post">
-        <label for="username">username</label>
-        <input type="text" name="username" required> <br>
+        <label for="usernane">Username</label>
+        <input type="text" name="usernane" required> <br>
         <br>
         <label for="password">Password</label>
         <input type="password" name="password" required>
         <br>
-        <input type="checkbox" name="remember"> Remember login?
+        <label for="remember">Ghi nhớ đăng nhập</label>
+        <input type="checkbox" name="remember">
         <br>
         <input type="submit" value="Đăng nhập">
     </form>
     <?php
-    echo $errorMessage;
+    echo "<br>";
+    echo $error;
     ?>
 </body>
 
