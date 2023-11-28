@@ -1,32 +1,42 @@
 <?php
-require_once("DB.php");
 session_start();
-if (isset($_SESSION['username'])) {
-    header("Location: index.php");
-    exit;
-}
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $username = trim($_POST['username'] ?? '');
-    $password = trim($_POST['password'] ?? '');
-    if (strlen($username) >= 6 || strlen($username) <= 32 || strlen($password) >= 6 || strlen($password) <= 60) {
-        echo "Tài khoản hoặc mật khẩu không đủ ký tự";
-    } else {
-        $sql = "SELECT * FROM tai_khoan WHERE username = :username";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindValue(":username", $username);
-        $stmt->execute();
-        $user = $stmt->fetch();
-        if ($user) {
-            echo "Tên username đã tồn tại";
+$host = "localhost";
+$dbname = "qlsv";
+$username = "root";
+$password = "";
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if (isset($_SESSION['usernane'])) {
+        header("Location: index.php");
+        exit;
+    }
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $usernane = trim($_POST['usernane'] ?? '');
+        $password = trim($_POST['password'] ?? '');
+        if (strlen($usernane) < 6 || strlen($usernane) > 32 || strlen($password) < 6 || strlen($password) > 60) {
+            echo "Tài khoản hoặc mật khẩu không đủ ký tự";
         } else {
-            $sql = "INSERT INTO tai_khoan (username, password) VALUES(:username, :password)";
+            $sql = "SELECT * FROM tai_khoan WHERE usernane = :usernane";
             $stmt = $conn->prepare($sql);
-            $stmt->bindValue(":username", $username);
-            $stmt->bindValue(":password", $password);
+            $stmt->bindValue(":usernane", $usernane);
             $stmt->execute();
-            echo "Đăng ký thành công";
+            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($user) {
+                echo "Tên usernane đã tồn tại";
+            } else {
+                $sql = "INSERT INTO tai_khoan (usernane, password) VALUES(:usernane, :password)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(":usernane", $usernane);
+                $stmt->bindValue(":password", $password);
+                $stmt->execute();
+                echo "Đăng ký thành công";
+            }
         }
     }
+} catch (PDOException $e) {
+    echo "Kết nối CSDL thất bại" . $e->getMessage();
 }
 $conn = null;
 
@@ -44,8 +54,8 @@ $conn = null;
 <body>
     <div class="form">
         <form action="" method="post">
-            <label for="username">Username</label>
-            <input type="text" name="username" required> <br>
+            <label for="usernane">username</label>
+            <input type="text" name="usernane" required> <br>
             <br>
             <label for="password">Password</label>
             <input type="password" name="password" required>
