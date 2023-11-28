@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     if ($errorname || $errorpass) {
-        $error = $errorname . ($errorname && $errorpass ? ' và ' : '') . $errorpass;
+        $error = $errorname . ($errorname && $errorpass ? " và " : "") . $errorpass;
     } else {
         $sql = "SELECT * FROM tai_khoan WHERE usernane = :usernane";
         $stmt = $conn->prepare($sql);
