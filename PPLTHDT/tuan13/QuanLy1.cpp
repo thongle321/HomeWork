@@ -6,52 +6,57 @@
 using namespace std;
 void QuanLy::Nhap()
 {
-	int chon;
-	do
+
+	cout << "Nhập số luong nhan vien: ";
+	cin >> soluongnv;
+	cout << "\n1. Nhan vien san xuat";
+	cout << "\n2. Nhan vien cong nhat";
+	cout << "\n3. Nhan vien quan ly";
+	cout << "\n4. Xuất loại\n";
+
+	for (int i = 0; i < soluongnv; i++)
 	{
-		cout << "So luong nhan vien: ";
-		cin >> soluongnv;
+		int chon;
+		cout << "\nNhap thong tin nhan vien thu " << i + 1 << ":";
 
-		cout << "\n1. Nhan vien san xuat";
-		cout << "\n2. Nhan vien cong nhat";
-		cout << "\n3. Nhan vien quan ly";
-		cout << "\n4. Xuất loại\n";
-
-		for (int i = 0; i < soluongnv; i++)
-		{
-			cout << "\nNhap thong tin nhan vien thu " << i + 1 << ":";
-
-			cin >> chon;
-
-			switch (chon)
-			{
-			case 1:
-				arrNhanVien[i] = new NhanVienSX();
-				arrNhanVien[i]->Nhap();
-				soluongnvsx++;
-				break;
-			case 2:
-				arrNhanVien[i] = new NhanVienCN();
-				arrNhanVien[i]->Nhap();
-				soluongnvcn++;
-				break;
-			case 3:
-				arrNhanVien[i] = new NhanVienQL();
-				arrNhanVien[i]->Nhap();
-				soluongnvql++;
-				break;
-			case 4:
-				// Exit the loop when selecting option 4
-			default:
-				cout << "Lua chon khong hop le. Vui long nhap lai!";
-				break;
-			}
-		}
-
-		cout << "\nBan co muon nhap them nhan vien khong? (0: Khong, 1: Co): ";
 		cin >> chon;
-	} while (chon == 1); // Continue the loop if the user chooses to add more employees
+
+		if (chon == 1)
+		{
+			arrNhanVien[i] = new NhanVienSX();
+
+			soluongnvsx++;
+		}
+		else if (chon == 2)
+		{
+			arrNhanVien[i] = new NhanVienCN();
+
+			soluongnvcn++;
+		}
+		else if (chon == 3)
+		{
+			arrNhanVien[i] = new NhanVienQL();
+
+			soluongnvql++;
+		}
+		else if (chon == 4)
+		{
+			// Exit the loop when selecting option 4
+			break;
+		}
+		else
+		{
+			cout << "Lua chon khong hop le. Vui long nhap lai!";
+		}
+	}
+
+	for (int i = 0; i < soluongnv; i++)
+	{
+		cout << "Nhap nhan vien thu: " << i << ": " << endl;
+		arrNhanVien[i]->Nhap();
+	}
 }
+
 void QuanLy::Xuat()
 {
 	cout << "Tong so nhan vien: " << soluongnv << endl;
